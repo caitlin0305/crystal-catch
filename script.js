@@ -15,12 +15,17 @@ const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
 var spelerX = 600; // x-positie van speler
-var spelerY = 670; // y-positie van speler
+var spelerY = 800; // y-positie van speler
+
+var vijandX = 300;
+var vijandY = 0;
 
 var speed = 10;
 
 var A_KEY = 65;
 var D_KEY = 68;
+
+var score = 0;
 
 function preload() {
   imgadventurine = loadImage('images.kristallen/adventurine.png');
@@ -48,8 +53,27 @@ var bomb = false;
 /**
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
+
+
+
+
+
+
+
+
+
 var beweegAlles = function () {
   // vijand
+  
+  vijandY = vijandY + 10;
+  if (vijandY > 800) {
+    vijandY = 0;
+    vijandX = random (100,1200);
+    
+  }
+  
+
+  
 
   // kogel
 
@@ -75,6 +99,7 @@ var beweegAlles = function () {
   if (spelerY > 670){
       spelerY = 670;
   } 
+
 
 };
 
@@ -104,10 +129,21 @@ var tekenAlles = function () {
   fill("white");
   rect(spelerX -25, spelerY - 25, 50, 50);
 
+  fill('black');
+  rect(vijandX, vijandY, 50,50)
+
+  textSize(50);
+  text( ""+score, 1200, 70);
+  fill(255,255,255);
+ 
 
   // punten en health
 
 };
+
+
+
+
 
 /**
  * return true als het gameover is
