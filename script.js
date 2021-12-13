@@ -15,7 +15,12 @@ const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
 var spelerX = 600; // x-positie van speler
-var spelerY = 600; // y-positie van speler
+var spelerY = 670; // y-positie van speler
+
+var speed = 10;
+
+var A_KEY = 65;
+var D_KEY = 68;
 
 function preload() {
   imgadventurine = loadImage('images.kristallen/adventurine.png');
@@ -40,7 +45,27 @@ var beweegAlles = function () {
   // kogel
 
   // speler
+  if (keyIsDown(A_KEY)){
+    spelerX = spelerX - speed
+    }
+    if (keyIsDown(D_KEY)){
+    spelerX = spelerX + speed
+    }
 
+    // zorg dat speler op scherm blijft
+    if (spelerX > 1250) {
+      spelerX = 1250;
+  }
+  if(spelerX < 23 ){
+      spelerX = 23;
+  }
+
+  if(spelerY < 16 ){
+      spelerY = 16;
+  }
+  if (spelerY > 670){
+      spelerY = 670;
+  }
 };
 
 /**
@@ -67,9 +92,8 @@ var tekenAlles = function () {
 
   // speler
   fill("white");
-  rect(spelerX - 25, spelerY - 25, 50, 50);
-  fill("black");
-  ellipse(spelerX, spelerY, 10, 10);
+  rect(spelerX -25, spelerY - 25, 50, 50);
+
 
   // punten en health
 
