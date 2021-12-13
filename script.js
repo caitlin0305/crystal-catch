@@ -32,6 +32,15 @@ function preload() {
   imgbom = loadImage('images.kristallen/bomb.png');
 }
 
+var adventurine = 1;
+var amethyst = 2;
+var fluorite = 3;
+var gemstone = 4;
+var lapislazuli = 5;
+var rosequartz = 6;
+
+var bomb = false; 
+
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -46,10 +55,10 @@ var beweegAlles = function () {
 
   // speler
   if (keyIsDown(A_KEY)){
-    spelerX = spelerX - speed
+    spelerX = spelerX - speed; 
     }
     if (keyIsDown(D_KEY)){
-    spelerX = spelerX + speed
+    spelerX = spelerX + speed; 
     }
 
     // zorg dat speler op scherm blijft
@@ -65,7 +74,8 @@ var beweegAlles = function () {
   }
   if (spelerY > 670){
       spelerY = 670;
-  }
+  } 
+
 };
 
 /**
@@ -181,6 +191,8 @@ var checkGameOver = function () {
 function draw() {
   if (spelStatus === SPELEN) {
     beweegAlles();
+   
+
     verwerkBotsing();
     tekenAlles();
     if (checkGameOver()) {
