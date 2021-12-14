@@ -65,108 +65,6 @@ var bomb = false;
 var beweegAlles = function () {
   // vijand
   
-  vijandY = vijandY + 10;
-  if (vijandY > 800) {
-    vijandY = 0;
-    vijandX = random (100,1200);
-    
-  }
-  
-
-  
-
-  // kogel
-
-  // speler
-  if (keyIsDown(A_KEY)){
-    spelerX = spelerX - speed; 
-    }
-    if (keyIsDown(D_KEY)){
-    spelerX = spelerX + speed; 
-    }
-
-    // zorg dat speler op scherm blijft
-    if (spelerX > 1250) {
-      spelerX = 1250;
-  }
-  if(spelerX < 23 ){
-      spelerX = 23;
-  }
-
-  if(spelerY < 16 ){
-      spelerY = 16;
-  }
-  if (spelerY > 670){
-      spelerY = 670;
-  } 
-
-
-};
-
-/**
- * Checkt botsingen
- * Verwijdert neergeschoten vijanden
- * Updatet globale variabelen punten en health
- */
-var verwerkBotsing = function () {
-  // botsing speler tegen vijand
-
-  // botsing kogel tegen vijand
-
-};
-
-/**
- * Tekent spelscherm
- */
-var tekenAlles = function () {
-  // achtergrond
-
-  // vijand
-
-  // kogel
-
-  // speler
-  fill("white");
-  rect(spelerX -25, spelerY - 25, 50, 50);
-
-  fill('black');
-  rect(vijandX, vijandY, 50,50)
-
-  textSize(50);
-  text( ""+score, 1200, 70);
-  fill(255,255,255);
- 
-
-  // punten en health
-
-};
-
-
-
-
-
-/**
- * return true als het gameover is
- * anders return false
- */
-var checkGameOver = function () {
-  return false;
-};
-
-/* ********************************************* */
-/* setup() en draw() functies / hoofdprogramma   */
-/* ********************************************* */
-
-/**
- * setup
- * de code in deze functie wordt één keer uitgevoerd door
- * de p5 library, zodra het spel geladen is in de browser
- */
- function setup() {
-  // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
-  createCanvas(1280, 720);
-
-
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background(61, 58, 57);
   
@@ -213,6 +111,109 @@ var checkGameOver = function () {
   textFont('courier');
   text('Crystal Catcher', 470, 40);
   
+  vijandY = vijandY + 10;
+  if (vijandY > 800) {
+    vijandY = 0;
+    vijandX = random (100,1200);
+    
+  }
+  
+
+  
+
+  // kogel
+
+  // speler
+  if (keyIsDown(A_KEY)){
+    spelerX = spelerX - speed; 
+    }
+    if (keyIsDown(D_KEY)){
+    spelerX = spelerX + speed; 
+    }
+
+    // zorg dat speler op scherm blijft
+    if (spelerX > 1250) {
+      spelerX = 1250;
+  }
+  if(spelerX < 23 ){
+      spelerX = 23;
+  }
+
+  if(spelerY < 16 ){
+      spelerY = 16;
+  }
+  if (spelerY > 670){
+      spelerY = 670;
+  } 
+
+
+  textSize(50);
+  text( ""+score, 1200, 70);
+  fill(255,255,255);
+
+  
+
+};
+
+/**
+ * Checkt botsingen
+ * Verwijdert neergeschoten vijanden
+ * Updatet globale variabelen punten en health
+ */
+var verwerkBotsing = function () {
+  // botsing speler tegen vijand
+
+  // botsing kogel tegen vijand
+
+};
+
+/**
+ * Tekent spelscherm
+ */
+var tekenAlles = function () {
+  // achtergrond
+
+  // vijand
+
+  // kogel
+
+  // speler
+  fill("white");
+  rect(spelerX -25, spelerY - 25, 50, 50);
+
+  fill('black');
+  rect(vijandX, vijandY, 50,50)
+
+  
+
+  // punten en health
+
+};
+
+
+
+
+
+/**
+ * return true als het gameover is
+ * anders return false
+ */
+var checkGameOver = function () {
+  return false;
+};
+
+/* ********************************************* */
+/* setup() en draw() functies / hoofdprogramma   */
+/* ********************************************* */
+
+/**
+ * setup
+ * de code in deze functie wordt één keer uitgevoerd door
+ * de p5 library, zodra het spel geladen is in de browser
+ */
+ function setup() {
+  // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
+  createCanvas(1280, 720);
 
 
   
