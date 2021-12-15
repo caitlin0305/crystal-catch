@@ -14,11 +14,12 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
-var spelerX = 600; // x-positie van speler
+var spelerX = 0; // x-positie van speler
 var spelerY = 800; // y-positie van speler
 
-var vijandX = 300;
+var vijandX = 0;
 var vijandY = 0;
+
 
 var speed = 10;
 
@@ -26,6 +27,7 @@ var A_KEY = 65;
 var D_KEY = 68;
 
 var score = 0;
+
 
 function preload() {
   imgadventurine = loadImage('images.kristallen/adventurine.png');
@@ -46,6 +48,8 @@ var rosequartz = 6;
 
 var bomb = false; 
 
+
+
 /* ********************************************* */
 /* functies die je gebruikt in je game           */
 /* ********************************************* */
@@ -58,6 +62,8 @@ var bomb = false;
 
 
 
+ 
+  
 
 
 
@@ -111,12 +117,36 @@ var beweegAlles = function () {
   textFont('courier');
   text('Crystal Catcher', 470, 40);
   
-  vijandY = vijandY + 10;
-  if (vijandY > 800) {
+  vijandY = vijandY + 5;
+
+  if (vijandY > 800 ) {
     vijandY = 0;
     vijandX = random (100,1200);
     
+    }
+
+  if (vijandX >= spelerX -50 &&
+    vijandX <= spelerX +50 &&
+    vijandY >= spelerY -50 &&
+    vijandY <= spelerY - 49){
+      score = score + 1;
+    }
+  
+  
+  if (score > 10){
+    vijandY = vijandY + 10;
   }
+
+  
+
+  
+
+
+  
+    
+  
+  
+
   
 
   
@@ -146,10 +176,14 @@ var beweegAlles = function () {
       spelerY = 670;
   } 
 
+  
+
 
   textSize(50);
   text( ""+score, 1200, 70);
   fill(255,255,255);
+
+  
 
   
 
@@ -183,6 +217,9 @@ var tekenAlles = function () {
 
   fill('black');
   rect(vijandX, vijandY, 50,50)
+
+  
+
 
   
 
