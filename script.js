@@ -28,6 +28,8 @@ var D_KEY = 68;
 
 var score = 0;
 
+var bomGeraakt = false;
+
 
 function preload() {
   imgadventurine = loadImage('images.kristallen/adventurine.png');
@@ -180,7 +182,7 @@ var beweegAlles = function () {
 
 
   textSize(50);
-  text( ""+score, 1200, 70);
+  text( "0" + score, 1200, 70);
   fill(255,255,255);
 
   
@@ -208,15 +210,18 @@ var tekenAlles = function () {
   // achtergrond
 
   // vijand
+  image( imgbom, vijandX, vijandY, 50, 50);
+  
 
   // kogel
 
   // speler
-  fill("white");
-  rect(spelerX -25, spelerY - 25, 50, 50);
+  fill("silver");
+  rect(spelerX -25, spelerY - 25, 100, 50);
+  ellipse(spelerX -25, spelerY + 25, 10, 10);
+  ellipse(spelerX + 75, spelerY + 25, 10, 10);
 
-  fill('black');
-  rect(vijandX, vijandY, 50,50)
+
 
   
 
@@ -227,6 +232,10 @@ var tekenAlles = function () {
 
 };
 
+//bom geraakt 
+var bomGeraakt = function() {
+ 
+}
 
 
 
