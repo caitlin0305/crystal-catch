@@ -19,7 +19,8 @@ var spelerY = 800; // y-positie van speler
 
 var vijandX = 0;
 var vijandY = 0;
-
+var kristalX = 0;
+var kristalY = 0;
 
 var speed = 10;
 
@@ -41,12 +42,12 @@ function preload() {
   imgbom = loadImage('images.kristallen/bomb.png');
 }
 
-var adventurine = 1;
-var amethyst = 2;
-var fluorite = 3;
-var gemstone = 4;
-var lapislazuli = 5;
-var rosequartz = 6;
+var adventurine = false;
+var amethyst = false;
+var fluorite = false;
+var gemstone = false;
+var lapislazuli = false;
+var rosequartz = false;
 
 var bomb = false; 
 
@@ -131,7 +132,7 @@ var beweegAlles = function () {
     vijandX <= spelerX +50 &&
     vijandY >= spelerY -50 &&
     vijandY <= spelerY - 49){
-      score = score + 1;
+      score = score - 1;
     }
   
   
@@ -139,21 +140,28 @@ var beweegAlles = function () {
     vijandY = vijandY + 10;
   }
 
-  
+  //kristal
 
-  
+  kristalY = kristalY + 5;
 
-
-  
+  if (kristalY > 800 ) {
+    kristalY = 0;
+    kristalX = random (100,1200);
     
-  
-  
+    }
 
+  if (kristalX >= spelerX - 50 &&
+    kristalX <= spelerX + 50 &&
+    kristalY >= spelerY -50 &&
+    kristalY <= spelerY - 49){
+      score = score + 1;
+    }
   
-
   
+  if (score > 10){
+    kristalY = kristalY + 10;
+  }
 
-  // kogel
 
   // speler
   if (keyIsDown(A_KEY)){
@@ -213,7 +221,9 @@ var tekenAlles = function () {
   image( imgbom, vijandX, vijandY, 50, 50);
   
 
-  // kogel
+  // kristal
+  image (imgadventurine, kristalX, kristalY, 50, 50);
+ 
 
   // speler
   fill("silver");
