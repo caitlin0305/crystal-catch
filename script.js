@@ -128,12 +128,7 @@ var beweegAlles = function () {
     
     }
 
-  if (vijandX >= spelerX -50 &&
-    vijandX <= spelerX +50 &&
-    vijandY >= spelerY -50 &&
-    vijandY <= spelerY - 49){
-      score = score - 1;
-    }
+  
   
   
   if (score > 10){
@@ -255,6 +250,25 @@ var bomGeraakt = function() {
  * anders return false
  */
 var checkGameOver = function () {
+
+  if (vijandX >= spelerX -50 &&
+    vijandX <= spelerX +50 &&
+    vijandY >= spelerY -50 &&
+    vijandY <= spelerY - 49){
+      
+
+      background('blue');
+
+      textSize(50);
+      text( "GAME OVER", 600, 400);
+      text("Your points:" +score, 600, 600);
+      fill(255,255,255);
+
+
+      return true;
+
+      
+    }
   return false;
 };
 
