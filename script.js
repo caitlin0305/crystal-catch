@@ -14,6 +14,9 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = SPELEN;
 
+var imgadventurine;
+var kristalImages = [];
+
 var spelerX = 0; // x-positie van speler
 var spelerY = 800; // y-positie van speler
 
@@ -21,7 +24,7 @@ var vijandX = 0;
 var vijandY = 0;
 var kristalX = 0;
 var kristalY = 0;
-
+var valSnelheid = 5;
 var speed = 10;
 
 var A_KEY = 65;
@@ -31,25 +34,20 @@ var score = 0;
 
 var bomGeraakt = false;
 
+var valObjecten = [];
+
 
 function preload() {
-  imgadventurine = loadImage('images.kristallen/adventurine.png');
-  imgamethyst = loadImage('images.kristallen/amethyst.png');
-  imgfluorite = loadImage('images.kristallen/fluorite.png');
-  imggemstone = loadImage('images.kristallen/gemstone.png');
-  imglapislazuli = loadImage('images.kristallen/lapislazuli.png');
-  imgrosequartz = loadImage('images.kristallen/rosequartz.png');
+  kristalImages.push(loadImage('images.kristallen/adventurine.png'));
+  kristalImages.push(loadImage('images.kristallen/amethyst.png'));
+  kristalImages.push(loadImage('images.kristallen/fluorite.png'));
+  kristalImages.push(loadImage('images.kristallen/gemstone.png'));
+  kristalImages.push(loadImage('images.kristallen/lapislazuli.png'));
+  kristalImages.push(loadImage('images.kristallen/rosequartz.png'));
+
   imgbom = loadImage('images.kristallen/bomb.png');
 }
 
-var adventurine = false;
-var amethyst = false;
-var fluorite = false;
-var gemstone = false;
-var lapislazuli = false;
-var rosequartz = false;
-
-var bomb = false; 
 
 
 
@@ -102,12 +100,12 @@ var beweegAlles = function () {
   rect(0, 700, 1400, 30)
 
   //afbeeldingen
-  image(imgadventurine, 600, 100, 80, 80);
-  image(imgamethyst, 600, 150, 60, 60);
-  image(imgfluorite, 650, 100, 80, 80);
-  image(imggemstone, 650, 150, 70, 70);
-  image(imglapislazuli, 550, 100, 80, 80);
-  image(imgrosequartz, 550, 150, 80, 80);
+  image(kristalImages[0], 600, 100, 80, 80);
+  image(kristalImages[1], 600, 150, 60, 60);
+  image(kristalImages[2], 650, 100, 80, 80);
+  image(kristalImages[3], 650, 150, 70, 70);
+  image(kristalImages[4], 550, 100, 80, 80);
+  image(kristalImages[5], 550, 150, 80, 80);
   image(imgbom, 500, 100, 80, 80);
 
   //hokje voor teller
@@ -217,7 +215,7 @@ var tekenAlles = function () {
   
 
   // kristal
-  image (imgadventurine, kristalX, kristalY, 50, 50);
+  image (kristalImages[0], kristalX, kristalY, 50, 50);
  
 
   // speler
@@ -272,6 +270,23 @@ var checkGameOver = function () {
   return false;
 };
 
+function maakNieuwValObject() {
+  var valler = undefined;
+
+  // is het een bom?
+  if (random(6) > 5) {
+    // maak een bom
+    valler = new ValObject(random(50, 1230), random(-100, -40), valSnelheid, imgbom, true);
+  }
+  else {
+    // maak een kristal
+    valler = new ValObject(random(50, 1230), random(-100, -40), valSnelheid, random(kristalImages));
+  }
+
+  valObjecten.push(valler);
+}
+
+
 /* ********************************************* */
 /* setup() en draw() functies / hoofdprogramma   */
 /* ********************************************* */
@@ -284,9 +299,9 @@ var checkGameOver = function () {
  function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
-
-
-  
+  maakNieuwValObject();
+  maakNieuwValObject();
+  maakNieuwValObject();
 
 }
 
@@ -297,8 +312,27 @@ var checkGameOver = function () {
  */
 function draw() {
   if (spelStatus === SPELEN) {
+
+
     beweegAlles();
-   
+
+    for(var i = 0; i < valObjecten.length; i++) {
+      var valler = valObjecten[i];
+
+      valler.show();
+      valler.update();
+
+      // haal objecten met een y > 800 weg uit de array
+      if (valler.y > 800) {
+        valObjecten.splice(i, 1);
+      }
+
+      if (collideRectRect(valler.x, valler.y, 80, 80, spelerX-25, spelerY-25, 100, 50)) {
+        console.log("botsing!");
+      }
+    }
+
+
 
     verwerkBotsing();
     tekenAlles();
