@@ -19,7 +19,7 @@ var spelStatus = STARTSCHERM;
 var imgadventurine;
 var kristalImages = [];
 
-var xbeginK = 480;
+var xbeginK = 460;
 var ybeginK = 320;
 
 var spelerX = 0; // x-positie van speler
@@ -50,6 +50,9 @@ function preload() {
   kristalImages.push(loadImage('images.kristallen/lapislazuli.png'));
   kristalImages.push(loadImage('images.kristallen/rosequartz.png'));
 
+  imgStartscherm = loadImage('images.kristallen/startscherm.png');
+  imgEindscherm = loadImage('images.kristallen/eindscherm.png');
+
   imgbom = loadImage('images.kristallen/bomb.png');
 }
 
@@ -65,41 +68,61 @@ function preload() {
  */
 
 var tekenStartscherm = function() {
-  background(255, 245, 105);
+  background(41, 1, 5);
 
-  fill("blue");
-  rect(xbeginK + 5, ybeginK + 150, 300, 140);
+  //vakje tekst
+  fill(77, 58, 57);
+  rect(xbeginK, ybeginK + 160, 400, 140);
+
   
-  fill(255, 255, 255);
+  // tekst voor de knop
+  fill("white");
   textSize(28);
   textFont("Helvetica");
-  text("Klik op spatie om te beginnen", xbeginK + 15, ybeginK + 230);
+  text("Klik op spatie om te beginnen", xbeginK + 15, ybeginK + 240);
 
+  
    //tekst game (crystal catcher)
-   fill(225, 230, 96);
-   textSize(40);
+   fill("white");
+   textSize(45);
    textFont('courier');
-   text('Crystal Catcher', 470, 40);
+   text('Crystal Catcher', 450, 60);
+
+   image(imgStartscherm, 500, 140, 300, 300);
 }
 
+
 var tekenEindscherm = function() {
-  background('blue');
+    background(41, 1, 5);
 
-      textSize(50);
-      text( "GAME OVER", 600, 400);
-      text("Your points:" +score, 600, 600);
-      fill(255,255,255);
+    fill(77, 58, 57);
+    rect(460, 150, 400, 200);
 
-      fill(255, 255, 255);
-      textSize(28);
-      textFont("Helvetica");
-      text("Klik op enter om opnieuw beginnen", xbeginK + 15, ybeginK + 230);
+    fill(255,255,255);
+    textSize(45);
+    text( "GAME OVER", 480, 220);
+    text("Your points:" +score, 480, 300);
+    
+
+    // vakje tekst
+    fill(77, 58, 57);
+    rect(xbeginK, ybeginK + 160, 400, 140);
+    
+    // tekst voor de knop
+    fill("white");
+    textSize(23);
+    textFont("Helvetica");
+    text("Klik op enter om opnieuw beginnen", xbeginK + 15, ybeginK + 240);
+
 
    //tekst game (crystal catcher)
-   fill(225, 230, 96);
-   textSize(40);
-   textFont('courier');
-   text('Crystal Catcher', 470, 40);
+    fill("white");
+    textSize(45);
+    textFont('courier');
+    text('Crystal Catcher', 450, 60);
+
+    image(imgEindscherm, 200, 320, 80, 80);
+    image(imgEindscherm, 1080, 320, 80, 80);
 }
 
  
