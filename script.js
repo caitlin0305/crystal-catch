@@ -10,6 +10,7 @@
 /* globale variabelen die je gebruikt in je game */
 /* ********************************************* */
 const STARTSCHERM = 0;
+const EINDSCHERM = 0;
 const SPELEN = 1;
 const GAMEOVER = 2;
 
@@ -81,7 +82,25 @@ var tekenStartscherm = function() {
    text('Crystal Catcher', 470, 40);
 }
 
+var tekenEindscherm = function() {
+  background('blue');
 
+      textSize(50);
+      text( "GAME OVER", 600, 400);
+      text("Your points:" +score, 600, 600);
+      fill(255,255,255);
+
+      fill(255, 255, 255);
+      textSize(28);
+      textFont("Helvetica");
+      text("Klik op enter om opnieuw beginnen", xbeginK + 15, ybeginK + 230);
+
+   //tekst game (crystal catcher)
+   fill(225, 230, 96);
+   textSize(40);
+   textFont('courier');
+   text('Crystal Catcher', 470, 40);
+}
 
  
   
@@ -275,12 +294,7 @@ var checkGameOver = function () {
     vijandY <= spelerY - 49){
       
 
-      background('blue');
-
-      textSize(50);
-      text( "GAME OVER", 600, 400);
-      text("Your points:" +score, 600, 600);
-      fill(255,255,255);
+      
 
 
       return true;
@@ -336,7 +350,7 @@ function draw() {
     case STARTSCHERM: 
     tekenStartscherm();
 
-    if(keyIsDown[32]) {
+    if(keyIsDown(32)) {
       spelStatus = SPELEN;
     } 
     break;
@@ -370,6 +384,9 @@ function draw() {
   }
   if (spelStatus === GAMEOVER) {
     // teken game-over scherm
-
+    tekenEindscherm();
+  }
+  if (keyIsDown(13)) {
+    window.location.reload(true);
   }
 }
