@@ -341,7 +341,7 @@ function draw() {
     } 
     break;
     
-    case SPELEN;
+    case SPELEN:
     beweegAlles();
 
     for(var i = 0; i < valObjecten.length; i++) {
