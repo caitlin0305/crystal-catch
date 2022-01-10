@@ -9,13 +9,17 @@
 /* ********************************************* */
 /* globale variabelen die je gebruikt in je game */
 /* ********************************************* */
-
+const STARTSCHERM = 0;
 const SPELEN = 1;
 const GAMEOVER = 2;
-var spelStatus = SPELEN;
+
+var spelStatus = STARTSCHERM;
 
 var imgadventurine;
 var kristalImages = [];
+
+var xbeginK = 480;
+var ybeginK = 320;
 
 var spelerX = 0; // x-positie van speler
 var spelerY = 800; // y-positie van speler
@@ -59,7 +63,23 @@ function preload() {
  * Updatet globale variabelen met posities van speler, vijanden en kogels
  */
 
+var tekenStartscherm = function() {
+  background(255, 245, 105);
 
+  fill("blue");
+  rect(xbeginK + 5, ybeginK + 150, 300, 140);
+  
+  fill(255, 255, 255);
+  textSize(28);
+  textFont("Helvetica");
+  text("Klik op spatie om te beginnen", xbeginK + 15, ybeginK + 230);
+
+   //tekst game (crystal catcher)
+   fill(225, 230, 96);
+   textSize(40);
+   textFont('courier');
+   text('Crystal Catcher', 470, 40);
+}
 
 
 
@@ -311,9 +331,17 @@ function maakNieuwValObject() {
  * uitgevoerd door de p5 library, nadat de setup functie klaar is
  */
 function draw() {
-  if (spelStatus === SPELEN) {
 
+  switch(spelStatus) {
+    case STARTSCHERM: 
+    tekenStartscherm();
 
+    if(keyIsDown[32]) {
+      spelStatus = SPELEN;
+    } 
+    break;
+    
+    case SPELEN;
     beweegAlles();
 
     for(var i = 0; i < valObjecten.length; i++) {
