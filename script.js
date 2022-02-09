@@ -260,9 +260,40 @@ var beweegAlles = function () {
  * Updatet globale variabelen punten en health
  */
 var verwerkBotsing = function () {
-  // botsing speler tegen vijand
 
-  // botsing kogel tegen vijand
+  // ga alle valler langs en check of ze botsen
+  // officieel hoort het checken of een valler buiten
+  // beeld is hier niet, kijk maar of dat netter kan
+  for(var i = 0; i < valObjecten.length; i++) {
+    var valler = valObjecten[i];
+
+    valler.show();
+    valler.update();
+
+    // haal objecten met een y > 800 weg uit de array
+    if (valler.y > 800) {
+      valObjecten.splice(i, 1);
+      maakNieuwValObject();
+    }
+
+    if (collideRectRect(valler.x, valler.y, 80, 80, spelerX-25, spelerY-25, 100, 50)) {
+      if (valler.isBom === true) {
+        // ga af
+
+      }
+      else {
+        // vangen
+        score = score + 1;
+        valObjecten.splice(i, 1);
+        maakNieuwValObject();
+
+        if (score % 10 === 0) {
+          levelUp();
+        }
+      }
+    }
+    
+  }
 
 };
 
@@ -333,14 +364,22 @@ function maakNieuwValObject() {
   // is het een bom?
   if (random(6) > 5) {
     // maak een bom
-    valler = new ValObject(random(50, 1230), random(-100, -40), valSnelheid, imgbom, true);
+    valler = new ValObject(random(50, 1230), random(-200, -40), valSnelheid, imgbom, true);
   }
   else {
     // maak een kristal
-    valler = new ValObject(random(50, 1230), random(-100, -40), valSnelheid, random(kristalImages));
+    valler = new ValObject(random(50, 1230), random(-200, -40), valSnelheid, random(kristalImages));
   }
 
   valObjecten.push(valler);
+}
+
+function levelUp() {
+  // introduceer extra valler
+  maakNieuwValObject();
+
+  // laat ze sneller vallen
+  speed = speed * 1.5;
 }
 
 
@@ -381,25 +420,8 @@ function draw() {
     case SPELEN:
     beweegAlles();
 
-    for(var i = 0; i < valObjecten.length; i++) {
-      var valler = valObjecten[i];
-
-      valler.show();
-      valler.update();
-
-      // haal objecten met een y > 800 weg uit de array
-      if (valler.y > 800) {
-        valObjecten.splice(i, 1);
-      }
-
-      if (collideRectRect(valler.x, valler.y, 80, 80, spelerX-25, spelerY-25, 100, 50)) {
-        console.log("botsing!");
-      }
-    }
-
-
-
     verwerkBotsing();
+
     tekenAlles();
     if (checkGameOver()) {
       spelStatus = GAMEOVER;
