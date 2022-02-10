@@ -82,11 +82,11 @@ var tekenStartscherm = function() {
   text("Klik op spatie om te beginnen", xbeginK + 15, ybeginK + 240);
 
   
-   //tekst game (crystal catcher)
+   //tekst game (crystal catch)
    fill("white");
    textSize(45);
    textFont('courier');
-   text('Crystal Catcher', 450, 60);
+   text('Crystal Catch', 450, 60);
 
    image(imgStartscherm, 500, 140, 300, 300);
 }
@@ -115,20 +115,15 @@ var tekenEindscherm = function() {
     text("Klik op enter om opnieuw beginnen", xbeginK + 15, ybeginK + 240);
 
 
-   //tekst game (crystal catcher)
+   //tekst game (crystal catch)
     fill("white");
     textSize(45);
     textFont('courier');
-    text('Crystal Catcher', 450, 60);
+    text('Crystal Catch', 450, 60);
 
     image(imgEindscherm, 200, 320, 80, 80);
     image(imgEindscherm, 1080, 320, 80, 80);
 }
-
- 
-  
-
-
 
 
 var beweegAlles = function () {
@@ -136,7 +131,7 @@ var beweegAlles = function () {
   
   // Kleur de achtergrond blauw, zodat je het kunt zien
   background(61, 58, 57);
-  
+
   // halvce cirkel mijn
   fill(107, 99, 96);
   ellipse(640, 700, 1200, 1200);
@@ -176,11 +171,11 @@ var beweegAlles = function () {
   fill('grey');
   rect(1180, 30, 70, 70);
 
-  //tekst game (crystal catcher)
+  //tekst game (crystal catch)
   fill(225, 230, 96);
   textSize(40);
   textFont('courier');
-  text('Crystal Catcher', 470, 40);
+  text('Crystal Catch', 470, 40);
   
   /*
   vijandY = vijandY + 5;
@@ -347,6 +342,7 @@ var bomGeraakt = function() {
  */
 var checkGameOver = function () {
 
+  /*
   if (vijandX >= spelerX -50 &&
     vijandX <= spelerX +50 &&
     vijandY >= spelerY -50 &&
@@ -361,6 +357,7 @@ var checkGameOver = function () {
       
     }
   return false;
+  */
 };
 
 function maakNieuwValObject() {
@@ -384,7 +381,10 @@ function levelUp() {
   maakNieuwValObject();
 
   // laat ze sneller vallen
-  speed = speed * 1.5;
+  if (score = 10){
+    speed = speed * 1.5;
+  }
+  
 }
 
 
