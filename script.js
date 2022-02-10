@@ -282,7 +282,7 @@ var verwerkBotsing = function () {
     if (collideRectRect(valler.x, valler.y, 80, 80, spelerX-25, spelerY-25, 100, 50)) {
       if (valler.isBom === true) {
         // ga af
-        tekenEindscherm();
+        spelStatus = GAMEOVER;
       }
       else {
         // vangen
@@ -307,12 +307,14 @@ var tekenAlles = function () {
   // achtergrond
 
   // vijand
+
+  /*
   image( imgbom, vijandX, vijandY, 50, 50);
   
 
   // kristal
   image (kristalImages[0], kristalX, kristalY, 50, 50);
- 
+ */
 
   // speler
   fill("silver");
