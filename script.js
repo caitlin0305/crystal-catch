@@ -161,7 +161,8 @@ var beweegAlles = function () {
   fill(43, 22, 7);
   rect(0, 700, 1400, 30)
 
-  //afbeeldingen
+  //afbeeldingen 
+  /*
   image(kristalImages[0], 600, 100, 80, 80);
   image(kristalImages[1], 600, 150, 60, 60);
   image(kristalImages[2], 650, 100, 80, 80);
@@ -169,6 +170,7 @@ var beweegAlles = function () {
   image(kristalImages[4], 550, 100, 80, 80);
   image(kristalImages[5], 550, 150, 80, 80);
   image(imgbom, 500, 100, 80, 80);
+  */
 
   //hokje voor teller
   fill('grey');
@@ -180,6 +182,7 @@ var beweegAlles = function () {
   textFont('courier');
   text('Crystal Catcher', 470, 40);
   
+  /*
   vijandY = vijandY + 5;
 
   if (vijandY > 800 ) {
@@ -216,7 +219,7 @@ var beweegAlles = function () {
   if (score > 10){
     kristalY = kristalY + 10;
   }
-
+*/
 
   // speler
   if (keyIsDown(A_KEY)){
@@ -279,7 +282,7 @@ var verwerkBotsing = function () {
     if (collideRectRect(valler.x, valler.y, 80, 80, spelerX-25, spelerY-25, 100, 50)) {
       if (valler.isBom === true) {
         // ga af
-
+        tekenEindscherm();
       }
       else {
         // vangen
