@@ -243,7 +243,7 @@ var beweegAlles = function () {
 
 
   textSize(50);
-  text( "0" + score, 1200, 70);
+  text(score, 1200, 70);
   fill(255,255,255);
 
   
@@ -381,8 +381,12 @@ function levelUp() {
   maakNieuwValObject();
 
   // laat ze sneller vallen
-  if (score = 10){
-    speed = speed * 1.5;
+  if (score > 10){
+    valSnelheid = valSnelheid * 1.5;
+  }
+
+  if(score > 20) {
+    valSnelheid = valSnelheid * 2.5;
   }
   
 }
